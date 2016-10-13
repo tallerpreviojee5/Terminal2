@@ -239,7 +239,7 @@ public class Terminal2 {
 				String minutos ="-";
 				String fecha_inicio="99-99-99";
 				String hora_inicio="99:99";
-				
+				String nroTicket = "";
 				
 				System.out.println("OPCIONES: ");
 				System.out.println("1) VENTA DE TICKET");
@@ -294,12 +294,19 @@ public class Terminal2 {
 					
 					
 				case "2":
-					System.out.println("Ingrese Matricula");
-					matricula = in_consola.readLine();
-					System.out.println("Ingrese Minutos");
-					minutos = in_consola.readLine();
-					out.print(opcion +" "+ matricula +" "+ minutos + "\r\n");
+					System.out.println("Ingrese Nro de Ticket a Cancelar:");
+					nroTicket = in_consola.readLine();
+					out.print(opcion + " " + nroTicket + "\r\n");
 					out.flush();
+					
+					recibido = in_servidor.readLine();
+					System.out.println("Recibido: " + recibido);
+					String[] componentes2 = recibido.split(" ");
+					if (componentes2[0].equals("200")){
+						System.out.println("Ticket " + nroTicket + " cancelado");
+					}else{
+						System.out.println(componentes2[1]);
+					}
 					break;
 				}
 
